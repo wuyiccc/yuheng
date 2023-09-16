@@ -1,0 +1,100 @@
+server:
+  tomcat:
+    uri-encoding: UTF-8
+    max-swallow-size: -1
+  # 默认端口号设置
+  port: ${PORT:8080}
+
+# 配置日志级别
+logging:
+  level:
+    root: info
+
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/*.xml
+  global-config:
+    db-config:
+      # 雪花算法id
+      id-type: assign_id
+    # 去掉mybatis-plus banner图片
+    banner: false
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+spring:
+  application:
+    name: yuheng
+  main:
+    allow-circular-references: true  #允许循环引用
+    allow-bean-definition-overriding: true
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.43.105:30962/yuheng?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: root
+    password: 123
+    hikari:
+      connection-timeout: 30000               # 等待连接池分配连接的最大时间（毫秒），超过这个时长还没有可用的连接，则会抛出SQLException
+      minimum-idle: 5                         # 最小连接数
+      maximum-pool-size: 20                   # 最大连接数
+      auto-commit: true                       # 自动提交
+      idle-timeout: 600000                    # 连接超时的最大时长（毫秒），超时则会被释放（retired）
+      pool-name: DataSourceHikariCP           # 连接池的名字
+      max-lifetime: 18000000                  # 连接池的最大生命时长（毫秒），超时则会被释放（retired）
+      connection-test-query: SELECT 1
+  redis:
+    host: 192.168.43.105
+    port: 31390
+    password: 123
+    database: 0
+
+sa-token:
+  token-name: token
+  # token有效期，单位s 默认1天, -1代表永不过期
+  timeout: 86400
+  # token临时有效期 (指定时间内无操作就视为token过期) 单位: 秒
+  active-timeout: -1
+  # 是否允许同一账号并发登录 (为true时允许一起登录, 为false时新登录挤掉旧登录)
+  is-concurrent: false
+  # 在多人登录同一账号时，是否共用一个token (为true时所有登录共用一个token, 为false时每次登录新建一个token)
+  is-share: false
+  # token风格
+  token-style: tik
+  # 是否输出操作日志
+  is-log: true
+  isReadCookie: false
+  isReadBody: false
+
+# 安全放行路径
+security:
+  # 忽略路径
+  ignore:
+    urls:
+      # 静态资源
+      - /favicon.ico
+      - /*.html
+      - /**/*.html
+      - /**/*.css
+      - /**/*.js
+      # swagger 文档配置
+      - /doc.html
+      - /*/api-docs
+      - /*/api-docs/**
+      - /swagger-resources
+      # druid 监控配置
+      - /druid/**
+knife4j:
+  enable: true
+
+yuheng:
+  minio:
+    endpoint: http://minio.myk8s.wuyiccc.com:31010
+    bucket: yuheng
+    accessKey: admin
+    secretKey: 12345678
