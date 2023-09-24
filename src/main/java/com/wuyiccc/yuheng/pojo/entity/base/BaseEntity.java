@@ -1,9 +1,6 @@
 package com.wuyiccc.yuheng.pojo.entity.base;
 
-import com.baomidou.mybatisplus.annotation.FieldFill;
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -36,6 +33,7 @@ public class BaseEntity {
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private String updateId;
 
+    @TableLogic
     private Integer delFlag;
 
     private String delId;

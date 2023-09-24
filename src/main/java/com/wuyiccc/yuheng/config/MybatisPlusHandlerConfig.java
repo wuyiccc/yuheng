@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
  * mybatis-plus自动字段注入
  */
 @Component
-public class MybatisHandlerConfig implements MetaObjectHandler {
+public class MybatisPlusHandlerConfig implements MetaObjectHandler {
 
 
     @Override

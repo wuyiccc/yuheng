@@ -93,18 +93,20 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUser(String id) {
 
-        LambdaQueryWrapper<UserEntity> wrapper = new LambdaQueryWrapper<>();
-        wrapper.eq(UserEntity::getId, id);
-        wrapper.eq(UserEntity::getDelFlag, DelFlagEnum.NO_DELETED.getType());
-
-        UserEntity userEntity = new UserEntity();
-        userEntity.setDelFlag(DelFlagEnum.DELETED.getType());
-        userEntity.setDelId(id);
-
-        int res = userMapper.update(userEntity, wrapper);
-        if (res != 1) {
-            throw new CustomException(ErrorMsgConstants.DATA_NOT_FOUND);
-        }
+//        LambdaQueryWrapper<UserEntity> wrapper = new LambdaQueryWrapper<>();
+//        wrapper.eq(UserEntity::getId, id);
+//        wrapper.eq(UserEntity::getDelFlag, DelFlagEnum.NO_DELETED.getType());
+//
+//        UserEntity userEntity = new UserEntity();
+//        userEntity.setDelFlag(DelFlagEnum.DELETED.getType());
+//        userEntity.setDelId(id);
+//
+//        int res = userMapper.update(userEntity, wrapper);
+//        if (res != 1) {
+//            throw new CustomException(ErrorMsgConstants.DATA_NOT_FOUND);
+//        }
+        int res = userMapper.deleteById(id);
+        System.out.println(res);
     }
 
     @Override

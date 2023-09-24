@@ -16,6 +16,9 @@ mybatis-plus:
     db-config:
       # 雪花算法id
       id-type: assign_id
+      logic-delete-field: delFlag
+      logic-delete-value: 1
+      logic-not-delete-value: 0
     # 去掉mybatis-plus banner图片
     banner: false
   configuration:
