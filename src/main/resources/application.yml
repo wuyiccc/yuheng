@@ -3,7 +3,7 @@ server:
     uri-encoding: UTF-8
     max-swallow-size: -1
   # 默认端口号设置
-  port: ${PORT:8080}
+  port: ${PORT:18081}
 
 # 配置日志级别
 logging:
@@ -94,10 +94,3 @@ security:
       - /druid/**
 knife4j:
   enable: true
-
-yuheng:
-  minio:
-    endpoint: http://minio.myk8s.wuyiccc.com:31010
-    bucket: yuheng
-    accessKey: admin
-    secretKey: 12345678

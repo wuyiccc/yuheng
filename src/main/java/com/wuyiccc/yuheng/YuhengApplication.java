@@ -2,12 +2,14 @@ package com.wuyiccc.yuheng;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableAsync;
 
 /**
  * @author wuyiccc
  * @date 2023/9/12 22:18
  */
 @SpringBootApplication
+@EnableAsync
 public class YuhengApplication {
 
     public static void main(String[] args) {

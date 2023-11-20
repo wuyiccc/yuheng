@@ -1,13 +1,9 @@
 package com.wuyiccc.yuheng.config;
 
-import cn.dev33.satoken.exception.SaTokenException;
 import cn.hutool.core.util.StrUtil;
-import com.wuyiccc.yuheng.common.constants.ErrorMsgConstants;
-import com.wuyiccc.yuheng.common.enums.ResponseStatusEnum;
 import com.wuyiccc.yuheng.common.exception.CustomException;
 import com.wuyiccc.yuheng.pojo.vo.CommonResult;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.dao.DuplicateKeyException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -28,8 +24,6 @@ import java.util.Map;
 public class GlobalExceptionConfig {
 
 
-
-
     @ExceptionHandler(CustomException.class)
     public CommonResult<String> returnMyCustomException(CustomException e) {
         String msg = e.getMsg();
@@ -37,18 +31,6 @@ public class GlobalExceptionConfig {
             msg = e.getResponseStatusEnum().msg();
         }
         return CommonResult.exception(e.getResponseStatusEnum(), msg);
-    }
-
-    @ExceptionHandler(SaTokenException.class)
-    public CommonResult<String> returnSaTokenException(SaTokenException e) {
-        return CommonResult.exception(ResponseStatusEnum.TOKEN_FAILED);
-    }
-
-
-
-    @ExceptionHandler(DuplicateKeyException.class)
-    public CommonResult<String> returnMyDuplicateKeyException(DuplicateKeyException e) {
-        return CommonResult.errorMsg(ErrorMsgConstants.DATA_REPEAT);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -76,9 +58,6 @@ public class GlobalExceptionConfig {
         }
         return errorMap;
     }
-
-
-
 
 
 }
